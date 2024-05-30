@@ -83,4 +83,4 @@ def main():
                                                 poutcome, emp_var_rate, cons_price_idx, cons_conf_idx, 
                                                 euribor3m, nr_employed])
         
-    st.success(prediction
+    st.success(prediction)
