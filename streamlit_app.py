@@ -40,7 +40,7 @@ class FeaturesAdder(BaseEstimator, TransformerMixin):
         loaded_model = pickle.load(open('bank_marketing_prediction.sav', 'rb'))
     def bank_marketing_prediction(input_data):
     # Correct the feature names to match the training data
-,
+
     inputt_data = pd.DataFrame([input_data])
     prediction = loaded_model.predict(inputt_data)
     return prediction[0]
