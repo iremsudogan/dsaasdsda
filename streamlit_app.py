@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.compose import ColumnTransformer
 
 class CustomLabelEncoder(BaseEstimator, TransformerMixin):
-    def init(self, columns):
+    def __init__(self, columns):
         self.columns = columns
         self.encoders = {}
 
@@ -25,7 +25,7 @@ class CustomLabelEncoder(BaseEstimator, TransformerMixin):
         return X
 
 class FeaturesAdder(BaseEstimator, TransformerMixin):
-    def init(self):
+    def __init__(self):
         pass
 
     def fit(self, X, y=None):
@@ -37,16 +37,16 @@ class FeaturesAdder(BaseEstimator, TransformerMixin):
         X_new['pdays_group'] = pd.cut(X_new['pdays'], bins=[-1, 0, 30, 90, 180, 999], labels=[0, 1, 2, 3, 4])
         X_new['age_education_level'] = X_new['age'] * X_new['education'].astype('category').cat.codes
         return X_new
-        loaded_model = pickle.load(open('bank_marketing_prediction.sav', 'rb'))
-    def bank_marketing_prediction(input_data):
-    # Correct the feature names to match the training data
 
-    inputt_data = pd.DataFrame([input_data])
-    prediction = loaded_model.predict(inputt_data)
+# Load the model
+loaded_model = pickle.load(open('bank_marketing_prediction.sav', 'rb'))
+
+def bank_marketing_prediction(input_data):
+    input_data = pd.DataFrame([input_data])
+    prediction = loaded_model.predict(input_data)
     return prediction[0]
 
 def main():
-
     # Giving a title
     st.title('Bank Marketing Prediction Web App')
     
@@ -83,7 +83,4 @@ def main():
                                                 poutcome, emp_var_rate, cons_price_idx, cons_conf_idx, 
                                                 euribor3m, nr_employed])
         
-    st.success(prediction)
-    
-if _name_ == '_main_':
-    main()
+    st.success(prediction
